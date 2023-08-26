@@ -1,0 +1,112 @@
+<%- include("./partials/header.ejs") %>
+<div class = "all">
+    <div class = "main">
+        <div class = "part">
+            <% items[0].forEach(function(element){ %>
+                <img src =  "/images/flesh/<%=element%>.jpg" class = "flesh choice-item hidden">
+            <% }) %>
+            <div class = "flesh next hidden">
+                <img onclick="fleshNext()" src = "/images/next.svg" class = "hidden" >
+            </div>
+            <% items[1].forEach(function(element){ %>
+                <img src =  "/images/middles/<%=element%>.jpg" class = "middles choice-item hidden display-none">
+            <% }) %>
+            <div class = "middles next hidden display-none">
+                <img onclick="middlesNext()" src = "/images/next.svg" class = "hidden" >
+            </div>
+            <% items[2].forEach(function(element){ %>
+                <img src =  "/images/vegetables/<%=element%>.jpg" class = "vegetables choice-item hidden display-none">
+            <% }) %>
+            <div class = "vegetables next hidde display-none">
+                <img onclick="send()" src = "/images/done.svg" class = "hidden" >
+            </div>
+            <div class = "hidden display-none" id="loading-screen">
+                <img src = "/images/huseyin.jpg" class = "loader hidden">
+                <p>Yükleniyor</p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<script>
+    
+    function send(){
+        var elements = document.getElementsByClassName("vegetables");
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].classList.remove("show");
+            elements[i].classList.add("hidden");
+            // add display none style after a second
+            setTimeout(function() {
+                elements[i].style.display = "none";
+                document.getElementById("loading-screen").classList.remove("display-none");
+            }, 1000);
+        }
+        var items = document.getElementsByClassName("choice-item");
+        var selected = [];
+        for(var i = 0; i < items.length; i++){
+            if(items[i].classList.contains("inactive")){
+                let src = items[i].getAttribute("src");
+                let s = src.split("/");
+                selected.push(s[s.length - 1].split(".")[0]);
+            }
+        }
+        // Create a new form element
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/recipe';
+
+        // Create a hidden input field to hold your data
+        const dataInput = document.createElement('input');
+        dataInput.type = 'hidden';
+        dataInput.name = "selected";
+        dataInput.value = selected;
+        form.appendChild(dataInput);
+        document.body.appendChild(form);
+        form.submit();
+    };
+    
+    function grayOut(element){
+        if(element.classList.contains("inactive")){
+            element.classList.remove("inactive");
+        }else{
+            element.classList.add("inactive");
+        }
+    }
+    function fleshNext(){
+        var elements = document.getElementsByClassName("flesh");
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].classList.remove("show");
+            elements[i].classList.add("hidden");
+            // add display none style after a second
+            setTimeout(function() {
+                elements[i].style.display = "none";
+                var middles = document.getElementsByClassName("middles");
+                for (let i = 0; i < middles.length; i++) {
+                    middles[i].classList.remove("display-none");
+                };
+            }, 1000);
+        }
+    }
+    function middlesNext(){
+        var elements = document.getElementsByClassName("middles");
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].classList.remove("show");
+            elements[i].classList.add("hidden");
+            // add display none style after a second
+            setTimeout(function() {
+                elements[i].style.display = "none";
+                var vegetables= document.getElementsByClassName("vegetables");
+                for (let i = 0; i < vegetables.length; i++) {
+                    vegetables[i].classList.remove("display-none");
+                };
+            }, 1000);
+        }
+    }
+
+    var buttons = document.getElementsByClassName("choice-item");
+    for(i = 0; i < buttons.length; i++){
+        buttons[i].setAttribute("onclick","grayOut(this)");
+    }
+</script>
+
+<%- include("./partials/footer.ejs") %>

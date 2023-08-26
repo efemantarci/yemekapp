@@ -1,0 +1,51 @@
+<div class = "footer">
+    <p>
+        COPYRIGHT
+    </p>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    })
+    const hiddenElements = document.querySelectorAll(".hidden");
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    
+
+    //Jquery code for navigation bar
+    $(".navImg").on("click", function(){
+        if (!$(".navBar").hasClass("display-none")){
+            console.log("dasfas");
+            $(this).children().attr("src", "/images/menu.svg");
+
+            //$(".all").removeClass("display-none");
+
+            $(".navImg").removeClass("close");
+            //$(".navBar").addClass("display-none");
+            $(".navBar").addClass("go-up");
+            setTimeout(function(){
+                $(".navBar").addClass("display-none");
+                $(".navBar").removeClass("go-up");
+            }, 1000);       
+        }
+        else{
+            $(".navImg").children().attr("src", "/images/close.svg");
+            $(".navImg").addClass("close");
+            $(".navBar").removeClass("display-none");
+            $(".navBar").addClass("go-up");
+            setTimeout(function(){
+                $(".navBar").removeClass("go-up");
+            }, 10);
+        }
+    });
+
+</script>
+</body>
+
+</html>

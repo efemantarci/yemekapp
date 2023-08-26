@@ -1,0 +1,94 @@
+<%- include("./partials/header.ejs") %>
+<div class = "all">
+    <div class = "main">
+        <div class = "mainTitle hidden">
+            <div class="mobile-collapse">
+                <p class="grid-like">
+                    Unrelated ingredients,
+                </p>
+                <p class="grid-like">
+                    Don't know what to do?
+                </p>
+            </div>
+            <div>
+                <p>
+                    Don't worry, We are here!
+                </p>
+            
+            </div>
+        </div>
+
+        <form action = "/submit" method = "post" class = "hidden">
+            <div id = "formBox">
+                <input type = "text" id = "inputBox" name = "wishs" placeholder="Tell us what you have" autocomplete= "off">
+                <button type = "submit" name = "button" id = "btn">Recipe!</button>
+            </div>
+        </form>
+
+
+        <div class = "content hidden">
+            <p>Now, it is quite easy to use leftovers instead of wasting them</p>
+            <hr class = "horizontal"/>
+        </div>
+    </div>
+
+    <div class = "goal">
+        <div class = "hidden">
+            <p class = "goal-title">Our Goals</p>
+            <hr class = "horizontal2"/>    
+        </div>
+
+        <div class = "goal-items">
+            <div class = "item hidden">
+                <div class = "title">
+                    <img src = "/images/eco.svg">
+                    <div class = centered>
+                        <p class = "title-p">Eco - Friendly</p>
+                    </div>
+                </div>    
+                <hr class = "horizontal3"/>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi voluptatibus sed consequatur, sint vitae eius at delectus deserunt dolor possimus reiciendis quasi, eaque magnam? Assumenda dolorem itaque maiores? Ipsam, odit?</p>
+                </div>
+            </div>
+
+            <div class = "item hidden">
+                <div class = "title">
+                    <img src = "/images/save.svg">
+                    <div class = "centered">
+                        <p class = "title-p">Save Money</p>
+                    </div>
+                </div>
+                <hr class = "horizontal3"/>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea blanditiis velit quis quia debitis fuga, corrupti cum pariatur? Atque molestiae labore quos eum eos repellendus minima adipisci odit velit deleniti!</p>
+                </div>
+            </div>
+
+            <div class = "item hidden">
+                <div class = "title">
+                    <img src = "/images/explore.svg">
+                    <div class = "centered">
+                        <p class = "title-p">Explore</p>
+                    </div>
+                </div>
+                <hr class = "horizontal3"/>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi saepe molestiae quos consequatur labore esse nesciunt consequuntur necessitatibus inventore ducimus magnam, ex eligendi cumque non quia distinctio minima aliquam illo?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "main">
+        <div class = "content hidden">
+            <p>We can give you a recipe based on your choices</p>
+            <hr class="horizontal" />
+            <form action = "/choices" method = "post">
+                <button type = "submit" name = "button" id = "btn2">Choose What You Like</button>
+            </form>
+        </div>
+
+    </div>    
+</div>
+<%- include("./partials/footer.ejs") %>
